@@ -249,15 +249,16 @@ sbit    bKey_P34								= P3^4;         //Source
 #define AD_KEY4                                 MCU_ADC_NONE
 
 
-// Keypad read to 6-bit ADC3, pin 53. Numbers are approximates from experimentation
-#define bAD1_Key_1                              44		// Source (button 5 on keypad)
-#define bAD1_Key_2                              17		// Up/vol down (button 3)
-#define bAD1_Key_3                              8 		// Menu (button 2)
-#define bAD1_Key_4                              31		// Down/vol up (button 4
-#define bAD1_Key_5								              255		// Not used ("AV1")
-#define bAD1_Key_6								              255 	// Not used ("AV2")
-#define bAD1_Key_7							                0		  // Power (button 1)
-#define bAD1_Key_8                              255		// Not used
+// Keypad read to 6-bit ADC3, pin 53, by resistor network to ground
+
+#define bAD1_Key_1                              255		// Not used
+#define bAD1_Key_2                              255 	// Not used ("AV2")
+#define bAD1_Key_3                              10		// Menu (button 2)
+#define bAD1_Key_4                              255		// Not used ("AV1")
+#define bAD1_Key_5								              28		// Down/vol up (button 4
+#define bAD1_Key_6								              18	 	// Up/vol down (button 3)
+#define bAD1_Key_7							                 0		// Power (button 1)
+#define bAD1_Key_8                              44		// Source (button 5 on keypad)
 
 #endif
 
