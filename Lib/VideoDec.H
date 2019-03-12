@@ -122,8 +122,8 @@
 
 //                                 |    Y input     |  C input   |
 #define _AV_CHANNEL                (_V1_INPUT << 4)
-#define _SV_CHANNEL                (_V2_INPUT << 4) //|  _V0_INPUT
-#define _TV_CHANNEL                (_V2_INPUT << 4)
+#define _SV_CHANNEL                (_V1_INPUT << 4)  |  _V2_INPUT
+#define _TV_CHANNEL                (_V3_INPUT << 4)
 
 
 #define _VIDEODEVICE               0x40
