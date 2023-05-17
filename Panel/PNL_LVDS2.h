@@ -1,5 +1,6 @@
-
 #define _DISPLAY_RATIO            _DISABLE
+
+#define _PANEL_DOUBLE_H             0
 
 #ifdef __RTDACCESS__
 //__SCALER__
@@ -27,14 +28,71 @@
 //_DEN_INVERT,
 
 //--------------------------------------------------
-// 800x600
+
+// 640x480
 code PanelType Panel0 =
 {
 	// Panel Style
     _PANEL_LVDS |		//_PANEL_TTL,_PANEL_HZ,_PANEL_LVDS,_PANEL_RSDS
     //_AUTOCALC_PIXCLK |
-    _LVDS_MAP2 |		//_LVDS_MAP1,_LVDS_MAP2
-    _DISP_18_BIT | 		//_DISP_24_BIT,_DISP_18_BIT
+    _LVDS_MAP1 |		//_LVDS_MAP1,_LVDS_MAP2
+    _DISP_24_BIT | 		//_DISP_24_BIT,_DISP_18_BIT
+    //_RSDS_GC_SWAP |
+   ///_RSDS_HL_SWAP |
+    //_RSDS_PN_SWAP |
+    0x00,                            
+
+	// Panel Configuration
+	//_DHS_MASK |
+	//_DISP_EO_SWAP |
+	//_DISP_RB_SWAP |
+	//_DISP_ML_SWAP |
+	_DISP_SINGLE_PORT |	//_DISP_SINGLE_PORT,_DISP_DOUBLE_PORT
+	//_DVS_INVERT |
+	//_DHS_INVERT |
+	//_DEN_INVERT |
+	0x00,
+
+
+	32,         // Display Horizontal Start Position
+	640,        // Display Horizontal Width
+
+	852,        // Display Horizontal Total Clock Number in One Display Line
+
+	852,        // Display Horizontal Total Clock Number in One Display Line for CVBS PAL
+	852,        // Display Horizontal Total Clock Number in One Display Line for CVBS NTSC
+
+	39,         // Display Vertical Start Position
+	480,        // Display Vertical Height
+
+	525,        // Display Vertical Total Line Number in One Frame
+
+	16,         // Display H Sync Width
+	3,          // Display V Sync Height
+
+	25,         // Typical Pixel Clock in MHz
+
+	1100,		// H Sync Max Freq Unit in 0.1 kHZ
+	100,		// H Sync Min Freq Unit in 0.1 kHZ
+	880,		// V Sync Max Freq Unit in 0.1 HZ
+	490,		// V Sync Min Freq Unit in 0.1 HZ
+
+    // TTL setting   
+    //(2 << 4) |  // Delay
+    (1 << 1) |    // DCLK output enable
+    0x00,         // DCLK Polarity
+
+};
+
+//--------------------------------------------------
+// 800x600
+code PanelType Panel1 =
+{
+	// Panel Style
+    _PANEL_LVDS |		//_PANEL_TTL,_PANEL_HZ,_PANEL_LVDS,_PANEL_RSDS
+    //_AUTOCALC_PIXCLK |
+    _LVDS_MAP1 |		//_LVDS_MAP1,_LVDS_MAP2
+    _DISP_24_BIT | 		//_DISP_24_BIT,_DISP_18_BIT
     //_RSDS_GC_SWAP |
     //_RSDS_HL_SWAP |
     //_RSDS_PN_SWAP |
@@ -52,23 +110,23 @@ code PanelType Panel0 =
 	0x00,
 
 
-	32,         // Display Horizontal Start Position
-	800,       // Display Horizontal Width
+	119,         // Display Horizontal Start Position
+	800,        // Display Horizontal Width
 
-	1024,       // Display Horizontal Total Clock Number in One Display Line
+	960,//1056,        // 1Display Horizontal Total Clock Number in One Display Line
 
-	952,       // Display Horizontal Total Clock Number in One Display Line for CVBS PAL
-	952,       // Display Horizontal Total Clock Number in One Display Line for CVBS NTSC
+	960,        // Display Horizontal Total Clock Number in One Display Line for CVBS PAL
+	960,        // Display Horizontal Total Clock Number in One Display Line for CVBS NTSC
 
-	32,         // Display Vertical Start Position
-	600,       // Display Vertical Height
+	39,         // Display Vertical Start Position
+	480,        // Display Vertical Height
 
-	850,       // Display Vertical Total Line Number in One Frame
+	525,        // Display Vertical Total Line Number in One Frame
 
 	16,         // Display H Sync Width
 	3,          // Display V Sync Height
 
-	75,         // Typical Pixel Clock in MHz
+	30,         // Typical Pixel Clock in MHz
 
 	1100,		// H Sync Max Freq Unit in 0.1 kHZ
 	100,		// H Sync Min Freq Unit in 0.1 kHZ
@@ -83,8 +141,63 @@ code PanelType Panel0 =
 };
 
 //--------------------------------------------------
+// 800x480
+code PanelType Panel2 =
+{
+	// Panel Style
+    _PANEL_LVDS |		//_PANEL_TTL,_PANEL_HZ,_PANEL_LVDS,_PANEL_RSDS
+    //_AUTOCALC_PIXCLK |
+    _LVDS_MAP2 |		//_LVDS_MAP1,_LVDS_MAP2
+    _DISP_24_BIT | 		//_DISP_24_BIT,_DISP_18_BIT
+    //_RSDS_GC_SWAP |
+    //_RSDS_HL_SWAP |
+    //_RSDS_PN_SWAP |
+    0x00,                            
+
+	// Panel Configuration
+	//_DHS_MASK |
+	//_DISP_EO_SWAP |
+	//_DISP_RB_SWAP |
+	//_DISP_ML_SWAP |
+	_DISP_SINGLE_PORT |	//_DISP_SINGLE_PORT,_DISP_DOUBLE_PORT
+	//_DVS_INVERT |
+	//_DHS_INVERT |
+	//_DEN_INVERT |
+	0x00,
+
+
+	118,         // Display Horizontal Start Position
+	800,        // Display Horizontal Width
+
+	926,        // 1Display Horizontal Total Clock Number in One Display Line
+
+	926,        // Display Horizontal Total Clock Number in One Display Line for CVBS PAL
+	926,        // Display Horizontal Total Clock Number in One Display Line for CVBS NTSC
+
+	36,         // Display Vertical Start Position
+	500,        // Display Vertical Height
+
+	525,        // Display Vertical Total Line Number in One Frame
+
+	48,         // Display H Sync Width
+	3,          // Display V Sync Height
+
+	40,         // Typical Pixel Clock in MHz
+
+	1100,		// H Sync Max Freq Unit in 0.1 kHZ
+	100,		// H Sync Min Freq Unit in 0.1 kHZ
+	880,		// V Sync Max Freq Unit in 0.1 HZ
+	490,		// V Sync Min Freq Unit in 0.1 HZ
+
+    // TTL setting   
+    //(3 << 4) |  // Delay
+    (1 << 1) |    // DCLK output enable
+    0x01,         // DCLK Polarity
+};
+
+//--------------------------------------------------
 //1024x768
-code PanelType Panel1 =
+code PanelType Panel3 =
 {
 	// Panel Style
     _PANEL_LVDS |		//_PANEL_TTL,_PANEL_HZ,_PANEL_LVDS,_PANEL_RSDS
@@ -111,20 +224,20 @@ code PanelType Panel1 =
 	32,         // Display Horizontal Start Position
 	1024,       // Display Horizontal Width
 
-	1352,       // Display Horizontal Total Clock Number in One Display Line
+	1452,       // Display Horizontal Total Clock Number in One Display Line
 
-	1352,       // Display Horizontal Total Clock Number in One Display Line for CVBS PAL
-	1380,//1352,       // Display Horizontal Total Clock Number in One Display Line for CVBS NTSC
+	1452,       // Display Horizontal Total Clock Number in One Display Line for CVBS PAL
+	1380,       // Display Horizontal Total Clock Number in One Display Line for CVBS NTSC
 
-	32,         // Display Vertical Start Position
-	600,       // Display Vertical Height
+	12,         // Display Vertical Start Position
+	768,       // Display Vertical Height
 
 	852,       // Display Vertical Total Line Number in One Frame
 
 	16,         // Display H Sync Width
 	3,          // Display V Sync Height
 
-	85,//95,         // Typical Pixel Clock in MHz
+	75,         // Typical Pixel Clock in MHz
 
 	1100,		// H Sync Max Freq Unit in 0.1 kHZ
 	100,		// H Sync Min Freq Unit in 0.1 kHZ
@@ -140,7 +253,7 @@ code PanelType Panel1 =
 
 //--------------------------------------------------
 //1280x800
-code PanelType Panel2 =
+code PanelType Panel4 =
 {
 	// Panel Style
     _PANEL_LVDS |		//_PANEL_TTL,_PANEL_HZ,_PANEL_LVDS,_PANEL_RSDS
@@ -196,7 +309,7 @@ code PanelType Panel2 =
 
 //--------------------------------------------------
 //1440x1050
-code PanelType Panel3 =
+code PanelType Panel5 =
 {
 	// Panel Style
     _PANEL_LVDS |		//_PANEL_TTL,_PANEL_HZ,_PANEL_LVDS,_PANEL_RSDS
@@ -252,7 +365,7 @@ code PanelType Panel3 =
 
 //--------------------------------------------------
 //1680x1050
-code PanelType Panel4 =
+code PanelType Panel6 =
 {
 	// Panel Style
     _PANEL_LVDS |		//_PANEL_TTL,_PANEL_HZ,_PANEL_LVDS,_PANEL_RSDS
@@ -309,23 +422,25 @@ code PanelType Panel4 =
 
 //--------------------------------------------------
 // Select panel
-BYTE idata ucPanelSelect = 1;
+BYTE idata ucPanelSelect = 2;
 
 
 //--------------------------------------------------
 code PanelType *Panel[] = 
 {
-     &Panel0, // 800x600
-     &Panel1, // 1024x768
-     &Panel2, // 1280x800
-     &Panel3, // 1440x800
-     &Panel4, // 1680x1050
+     &Panel0,  // 640x480
+     &Panel1,  // 800x600
+	 &Panel2,  // 800x480
+     &Panel3, // 1024x768
+     &Panel4, // 1280x800
+     &Panel5, // 1440x800
+     &Panel6, // 1680x1050
 };
 
 //--------------------------------------------------
 BYTE code g_ucPanelCnt = sizeof(Panel)/3;
 
-#if(_VGA_EDID)
+#if(_VGA_EDID == _ON)
 BYTE code tVGA_EDID_DATA[] =
 {
     0x00,0xff,0xff,0xff,0xff,0xff,0xff,0x00,0x4a,0x8b,0x00,0x00,0x01,0x01,0x01,0x01,
@@ -339,7 +454,7 @@ BYTE code tVGA_EDID_DATA[] =
 };
 #endif
 
-#if(_DVI_EDID)
+#if(_DVI_EDID == _ON)
 BYTE code tDVI_EDID_DATA[] =
 {
     0x00,0xff,0xff,0xff,0xff,0xff,0xff,0x00,0x26,0xCD,0x68,0x46,0x00,0x00,0x00,0x00,
@@ -414,9 +529,7 @@ BYTE code tHDMI_EDID_DATA[] =
 };
 #endif//End of #if(_HDMI_EDID == _ON)
 
-
 #else	// else of . #ifdef __MAIN__
-
 
 extern code PanelType *Panel[];
 extern BYTE code g_ucPanelCnt;

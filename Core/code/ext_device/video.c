@@ -61,38 +61,52 @@ void CSetVideoParameter(void)
     CScalerPageSelect(_PAGE7);
     CScalerSetBit(_P7_DLTI_DCTI_ENABLE_A1, ~(_BIT6), 0);
 
+// if(ucVideoType == 0) {
+//     CUartSendString("ucVideoType == 0\n");
+// }else{
+//     CUartSendString("ucVideoType != 0\n");
+// }
+
     switch (ucVideoType)
 	{
 		case ZNTSC:
 			CScalerCodeW(RTD2610_NTSC_M_ini);
+            // CUartSendString("ZNTSC\n");
 			break;
 
 		case ZPAL_I:
 			CScalerCodeW(RTD2610_PAL_I_ini);
+            // CUartSendString("ZPAL_I\n");
 			break;
 
 		case ZPAL_M:
 			CScalerCodeW(RTD2610_PAL_M_ini);
+            // CUartSendString("ZPAL_M\n");
 			break;
 
 		case ZPAL_N:
 			CScalerCodeW(RTD2610_PAL_CN_ini);
+            // CUartSendString("ZPAL_N\n");
 			break;
 
 		case ZNTSC_443:
 			CScalerCodeW(RTD2610_NTSC_443_ini);
+            // CUartSendString("ZNTSC_443\n");
 			break;
 
 		case ZSECAM:
 			CScalerCodeW(RTD2610_SECAM_ini);
+            // CUartSendString("ZSECAM\n");
 			break;
 
 		case ZPAL_60:
 			CScalerCodeW(RTD2610_PAL_60_ini);
+            // CUartSendString("ZPAL_60\n");
 			break;
 
 		case ZNTSC_50:
-			//CScalerCodeW(RTD2610_NTSC_50_ini);
+			// CScalerCodeW(RTD2610_NTSC_50_ini);
+            // CUartSendString("ZNTSC_50\n");
 			break;
 	}
 
@@ -413,6 +427,8 @@ void CVideoDisplaySet(void)
     stModeInfo.IHWidth      = tVIDEO_TABLE_INPUT_INFO[field][2];
     stModeInfo.IVStartPos   = tVIDEO_TABLE_INPUT_INFO[field][3];
     stModeInfo.IVHeight     = tVIDEO_TABLE_INPUT_INFO[field][4];
+    stModeInfo.IVTotal = 264;   // set 60HZ 525 lines
+
     stModeInfo.IHFreq       = 157;    // For PAL and NTSC. We can use sync processor to measure the actual value.
 
     stDisplayInfo.DHWidth   = CCalcPanelWdith();//Panel[ucPanelSelect]->DHWidth;
@@ -599,6 +615,7 @@ void CVideoProcess(void)
 	switch (ucCurrState) 
 	{
 		case _SEARCH_STATE:	
+        CUartSendString("_SEARCH_STATE\n");
 			if(kx_CVideoModeDetect())
 			{
                 CSetVideoModeReady();
@@ -611,8 +628,10 @@ void CVideoProcess(void)
 			break;
 
 		case _ACTIVE_STATE:
+        CUartSendString("_ACTIVE_STATE\n");
 			if (kx_CVideoIsChange())
 			{         
+                CUartSendString("kx_CVideoIsChange\n");
 			   	CModeResetMode();  
 				break;
 			}
@@ -656,6 +675,7 @@ void CVideoProcess(void)
 			break;
 
 		case _NOSIGNAL_STATE:
+            // CUartSendString("_NOSIGNAL_STATE\n");
 			if (GET_READYFORDISPLAY()) 
 			{
                 CLR_READYFORDISPLAY();
@@ -672,6 +692,7 @@ void CVideoProcess(void)
 			break;
 
 		case _SLEEP_STATE:
+            // CUartSendString("_SLEEP_STATE\n");
             if (kx_CVideoModeLocked())
 			{      
                 ucTVSyncFailCount = 250;

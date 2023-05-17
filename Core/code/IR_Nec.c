@@ -25,7 +25,13 @@ BYTE CIRKeyScan(void)
 	ucIrdaStatus = MCU_IR_STATUS_FF89;
 	if (ucIrdaStatus&(_BIT4|_BIT3))
     {
-		CIrdaReadData();			
+		CIrdaReadData();	
+
+		// CUartHex(ucIrQueue[0]);
+		// CUartHex(ucIrQueue[1]);
+		// CUartHex(ucIrQueue[2]);
+		// CUartHex(ucIrQueue[3]);
+
 		if(((UINT16 *)ucIrQueue)[0]==CUSTOM_CODE) 
         {
 			if(!(ucIrdaStatus&_BIT2))

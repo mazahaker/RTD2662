@@ -306,8 +306,8 @@ typedef bit BIT;
 #define _RTD3580D					1
 
 // Debug Tool
-#define _NONE                                   0
-#define _ISP_FOR_RTD3580D_EMCU                  1
+#define _NONE                                   1
+#define _ISP_FOR_RTD3580D_EMCU                  0
 
 // Video Input Selection
 #define _VIDEO_8_IN                     		0
@@ -381,6 +381,7 @@ typedef bit BIT;
 #define _AUDIO_SC7313                0
 #define _AUDIO_PWM                   1
 #define _AUDIO_NJW1144               2
+#define _AUDIO_NONE                  3
 
 //--------------------------------------------------
 //            PWM definitions
@@ -448,4 +449,8 @@ If you select SV port, we only support,  V0 with V1 or V1 with V2 or V2 with V3.
 /*======================= Extern Functions ================== */
 
 #endif 
+
+//sfr T2CON  = 0xC8;
+//sfr RCAP2L = 0xCA;
+//sfr RCAP2H = 0xCB;
 

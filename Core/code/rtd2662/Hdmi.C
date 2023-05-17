@@ -67,8 +67,8 @@ bit CHdmiVideoSetting(void)
         CScalerSetDataPortBit(_P2_HDMI_ADDR_PORT_C9, _P2_HDMI_ACRCR_51, ~(_BIT2), _BIT2); // Enable Pixel Repetition down sampling auto mode
 
 		#if(_HDCP_SUPPORT == _ON)
-        //CScalerSetDataPortByte(_P2_HDCP_ADDR_PORT_C3, 0x40, 0x93);//Change to HDCP1.1 for HDMI
-		CScalerSetDataPortByte(_P2_HDCP_ADDR_PORT_C3, 0x40, 0x91);// Change to HDCP1.0 for DVI
+        CScalerSetDataPortByte(_P2_HDCP_ADDR_PORT_C3, 0x40, 0x93);//Change to HDCP1.1 for HDMI
+		// CScalerSetDataPortByte(_P2_HDCP_ADDR_PORT_C3, 0x40, 0x91);// Change to HDCP1.0 for DVI
 		#endif
 
         //HDMI Video & Audio Part

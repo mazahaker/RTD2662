@@ -7,7 +7,7 @@
 //-------------------------------------------------------------------------
 void CUartDelay(void)
 {
-/*   19200
+//   19200
      BYTE i;
      for(i=0;i<_UART_DELAY;i++)
      {
@@ -21,23 +21,27 @@ void CUartDelay(void)
      _nop_();
      _nop_();
      _nop_(); 
-*/
 
-	_nop_();
-	_nop_();
-	_nop_();
-	_nop_();
-	_nop_();
-	_nop_();
-	_nop_();
+
+	// _nop_();
+	// _nop_();
+	// _nop_();
+	// _nop_();
+	// _nop_();
+	// _nop_();
+	// _nop_();
+
+     // _nop_();
+	// _nop_();
+	// _nop_();
 
 }
 //-------------------------------------------------------------------------
-void CUartSend(BYTE c)
+void  CUartSend(BYTE c)
 {
     ucUartSendData = c;
     
-    EA = 0;
+     EA = 0;
     // send begin
     UART_SEND(0);
     CUartDelay();
@@ -70,10 +74,10 @@ void CUartSend(BYTE c)
     UART_SEND(1);
     CUartDelay();
     
-    UART_SEND(1);
-    CUartDelay();
+//     UART_SEND(1);
+//     CUartDelay();
     
-    EA = 1;
+     EA = 1;
 }
 //-------------------------------------------------------------------------
 void CUartSendString(char* String)
@@ -118,14 +122,15 @@ void CUartSendWord(WORD Value)
      CUartSend((Value % 10) + '0');
 }
 //-------------------------------------------------------------------------
-void CUartPrintf(char *str,WORD Value)
+void CUartPrintf(char *str,BYTE Value)
 {
-     CUartSendString(str);
-     CUartSendWord(Value);
-     CUartSendString("\r\n");
+     // CUartSendString(str);
+     // CUartSend(Value);
+     // CUartSendWord(Value);
+     // CUartSendString("\r\n");
 }
 //-------------------------------------------------------------------------
-/*
+
 void CUartHex(BYTE Value)
 {
        BYTE h,l;
@@ -146,7 +151,7 @@ void CUartHex(BYTE Value)
        CUartSend(h);
        CUartSend(l);
        CUartSend(' ');
-}  */
+}  
 //-------------------------------------------------------------------------
 
 

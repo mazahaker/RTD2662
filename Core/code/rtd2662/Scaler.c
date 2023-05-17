@@ -62,7 +62,7 @@ void CScalerInitial(void)
 
 	#if(_HDCP_SUPPORT == _ON)
 	//bHPD = 0;//Hot Plug Detect Pull LOW
-	bHot_Plug = _HOT_PLUG_LOW;//bHot_Plug = 0;
+	// bHot_Plug = _HOT_PLUG_LOW;//bHot_Plug = 0;
 	CAdjustHDCP();//HDCP1.0 for DVI
 	//bHPD = 1;//Hot Plug Detect Pull HIGH
 	CTimerDelayXms(100);//20070714 gary for HDMI compatibility problem

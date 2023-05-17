@@ -689,7 +689,7 @@ void CAdjustAdcOffset(void)
 	}
   	{
     	CScalerPageSelect(_PAGE0);
-		//pData[3] = pData[4] = pData[5] = 0x80;	//provisional ¼È©w
+		//pData[3] = pData[4] = pData[5] = 0x80;	//provisional ï¿½È©w
 		CScalerWrite(_P0_RED_OFFSET_C3, 3, &pData[3], _AUTOINC);
 	}
 }
@@ -1682,7 +1682,7 @@ void CAdjustAdcClock_OSD(WORD usClock)
     CTimerDelayXms(100); 
     CAdjustEnableWatchDog(_WD_APLL_NONLOCK);
 #else
-    //Enable Double buffer write in PLL M/N K¡BPLLDIV¡BDDS SUM_I
+    //Enable Double buffer write in PLL M/N Kï¿½BPLLDIVï¿½BDDS SUM_I
 	CScalerSetBit(_P1_FAST_PLL_CTRL_AA, ~_BIT4, _BIT4);
 #endif
     CMiscClearStatusRegister();
@@ -1859,7 +1859,7 @@ void CAdjustAdcClockYPbPr(WORD usClock)
 	//CScalerSetByte(_P1_FAST_PLL_CTRL_AA, 0x60);
 	CScalerSetBit(_P1_FAST_PLL_CTRL_AA, ~(_BIT6 | _BIT5 | _BIT3), (_BIT6 | _BIT5 | _BIT3));
 #else
-    //Enable Double buffer write in PLL M/N K¡BPLLDIV¡BDDS SUM_I
+    //Enable Double buffer write in PLL M/N Kï¿½BPLLDIVï¿½BDDS SUM_I
 	CScalerSetBit(_P1_FAST_PLL_CTRL_AA, ~_BIT4, _BIT4);
 #endif
 
@@ -2074,7 +2074,7 @@ void CAdjustAdcClock(WORD usClock)
 	//CScalerSetByte(_P1_FAST_PLL_CTRL_AA, 0x60);
 	CScalerSetBit(_P1_FAST_PLL_CTRL_AA, ~(_BIT6 | _BIT5 | _BIT3), (_BIT6 | _BIT5 | _BIT3));
 #else
-    //Enable Double buffer write in PLL M/N K¡BPLLDIV¡BDDS SUM_I
+    //Enable Double buffer write in PLL M/N Kï¿½BPLLDIVï¿½BDDS SUM_I
 	CScalerSetBit(_P1_FAST_PLL_CTRL_AA, ~_BIT4, _BIT4);
 #endif
 

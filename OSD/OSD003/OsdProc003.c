@@ -22,7 +22,7 @@ void COsdHandler(void)
 
     CKeyOSDMsgCover();
 
-    // ÷¥––µ±«∞≤Àµ•µƒÀΩ”–¥¶¿Ì∫Ø ˝
+    // ÷¥ÔøΩ–µÔøΩ«∞ÔøΩÀµÔøΩÔøΩÔøΩÀΩÔøΩ–¥ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
     if(CURRENT_MENU_ITEM.Proc != NULL)
     {
         CURRENT_MENU_ITEM.Proc();
@@ -167,7 +167,7 @@ void COsdSystemFlowProc(void)
                 if (GET_FIRST_SHOW_NOTE())
                    ucOsdEventMsg = _DO_SHOW_NOTE;
                 
-                CTimerReactiveTimerEvent(SEC(1), CModeNoSupportEvent);
+                CTimerReactiveTimerEvent(SEC(0.5), CModeNoSupportEvent);
             }
             
             break;
@@ -207,8 +207,8 @@ void COsdSystemFlowProc(void)
 			    #if (_HDMI_SUPPORT == _ON)
     			if (_GET_INPUT_SOURCE() == _SOURCE_HDMI) 
     			{
-    				CTimerReactiveTimerEvent(SEC(5), CModeNoSignalEvent);
-    				CTimerReactiveTimerEvent(SEC(20), CModePowerSavingEvent);
+    				CTimerReactiveTimerEvent(SEC(0.5), CModeNoSignalEvent); // –≤—Ä–µ–º—è –ø–æ—è–≤–ª–µ–Ω–∏—è —Å–æ–æ–±—â–µ–Ω–∏—è –Ω–µ—Ç —Å–∏–≥–Ω–∞–ª–∞
+    				CTimerReactiveTimerEvent(SEC(1), CModePowerSavingEvent); // –≤—Ä–µ–º—è –∑–∞–¥–µ—Ä–∂–∫–∏ –≤—ã–∫–ª—é—á–µ–Ω–∏—è –ø–æ–¥—Å–≤–µ—Ç–∫–∏
     				break;
     			}		
 			    #endif	// #if (_HDMI_SUPPORT == _ON)
@@ -232,10 +232,11 @@ void COsdSystemFlowProc(void)
         				CTimerReactiveTimerEvent(SEC(1), CModeNoSignalEvent);
     	        }
 
-                if (bSourceVideo())
-        			CTimerReactiveTimerEvent(SEC(1), CModeNoSignalEvent);
+                if (bSourceVideo()) {
+        			CTimerReactiveTimerEvent(SEC(0.5), CModeNoSignalEvent);
 
-    			CTimerReactiveTimerEvent(SEC(20), CModePowerSavingEvent);   
+    			    CTimerReactiveTimerEvent(SEC(1), CModePowerSavingEvent);   
+                }
             }
             
             break;
@@ -330,7 +331,7 @@ void COsdEventMsgProc(void)
             	LoadCHIFont(_LF_OTHER);
 				#endif
     			CShowNoSignal();
-                CTimerReactiveTimerEvent(SEC(20), COsdDispOsdTimerEvent);
+                CTimerReactiveTimerEvent(SEC(3), COsdDispOsdTimerEvent);
     		}    		
             break;
             
@@ -663,23 +664,23 @@ void CShowNoSignal(void)
     SetOSDDouble((GET_OSD_SIZE() ? 0x03 : 0x00)  | OSD_WINDOWCHAR_BLENDING);   
 	
 	// Draw Top Line
-	OSDLine(ROW(1), COL(1), LENGTH(25), 0xA6, THE_BYTE0);
-	OSDLine(ROW(1), COL(1), LENGTH(25), 0xA4, THE_BYTE1);
-	OSDLine(ROW(1), COL(1), LENGTH(25), 0x11, THE_BYTE2);
+	// OSDLine(ROW(1), COL(1), LENGTH(25), 0xA6, THE_BYTE0);
+	// OSDLine(ROW(1), COL(1), LENGTH(25), 0xA4, THE_BYTE1);
+	// OSDLine(ROW(1), COL(1), LENGTH(25), 0x11, THE_BYTE2);
 
 	// Draw Bottom Line
-	OSDLine(ROW(5), COL(1), LENGTH(25), 0xA6, THE_BYTE0);
-	OSDLine(ROW(5), COL(1), LENGTH(25), 0xA4, THE_BYTE1);
-	OSDLine(ROW(5), COL(1), LENGTH(25), 0x11, THE_BYTE2);
+	// OSDLine(ROW(5), COL(1), LENGTH(25), 0xA6, THE_BYTE0);
+	// OSDLine(ROW(5), COL(1), LENGTH(25), 0xA4, THE_BYTE1);
+	// OSDLine(ROW(5), COL(1), LENGTH(25), 0x11, THE_BYTE2);
 
-	OSDLine(ROW(3), COL(1), LENGTH(45), 0x10, BYTE_COLOR);
+	// OSDLine(ROW(3), COL(1), LENGTH(45), 0x10, BYTE_COLOR);
 
 	// Draw Window
-	COsdFxDrawWindow(0,0,								//WORD usXStart,WORD usYStart,  
-					_DIALOG_WIDTH,_DIALOG_HEIGHT,		//WORD usXEnd,WORD usYEnd,  
-					tMainWindowStyle);					//BYTE *pStyle)
+	// COsdFxDrawWindow(0,0,								//WORD usXStart,WORD usYStart,  
+	// 				_DIALOG_WIDTH,_DIALOG_HEIGHT,		//WORD usXEnd,WORD usYEnd,  
+	// 				tMainWindowStyle);					//BYTE *pStyle)
 	 
-    CSetOSDPosition(_DIALOG_WIDTH, _DIALOG_HEIGHT, 50, 50);
+    // CSetOSDPosition(_DIALOG_WIDTH, _DIALOG_HEIGHT, 50, 50);
 
 	// Text out
 	if(ucCurrState == _NOSIGNAL_STATE || _GET_INPUT_SOURCE() == _SOURCE_VIDEO_TV)
@@ -688,7 +689,12 @@ void CShowNoSignal(void)
 	else if(ucCurrState == _NOSUPPORT_STATE)
 		pStr = sNotSupport[GET_LANGUAGE()];
 
-	CCenterTextout(pStr,ROW(3),1,25);
+	// CCenterTextout(pStr,ROW(3),1,25);
+
+
+	CCenterTextout(pStr,ROW(2),1,8);
+
+    // CTextOutBase(pStr, 1, 0);
 	
 	COsdFxEnableOsd();
 
@@ -743,16 +749,16 @@ void CShowNote(void)
     SetOSDDouble(GET_OSD_SIZE() ? 0x03 : 0x00);   
     
 	// Draw Top Line
-	OSDLine(ROW(1), COL(1), LENGTH(8), 0xA6, THE_BYTE0);
-	OSDLine(ROW(1), COL(1), LENGTH(8), 0xA4, THE_BYTE1);
-	OSDLine(ROW(1), COL(1), LENGTH(8), 0x11, THE_BYTE2);
+	// OSDLine(ROW(1), COL(1), LENGTH(8), 0xA6, THE_BYTE0);
+	// OSDLine(ROW(1), COL(1), LENGTH(8), 0xA4, THE_BYTE1);
+	// OSDLine(ROW(1), COL(1), LENGTH(8), 0x11, THE_BYTE2);
 
 	// Draw Bottom Line
-	OSDLine(ROW(3), COL(1), LENGTH(8), 0xA6, THE_BYTE0);
-	OSDLine(ROW(3), COL(1), LENGTH(8), 0xA4, THE_BYTE1);
-	OSDLine(ROW(3), COL(1), LENGTH(8), 0x11, THE_BYTE2);
+	// OSDLine(ROW(3), COL(1), LENGTH(8), 0xA6, THE_BYTE0);
+	// OSDLine(ROW(3), COL(1), LENGTH(8), 0xA4, THE_BYTE1);
+	// OSDLine(ROW(3), COL(1), LENGTH(8), 0x11, THE_BYTE2);
 
-	OSDLine(ROW(2), COL(1), LENGTH(45), 0x10, BYTE_COLOR);
+	// OSDLine(ROW(2), COL(1), LENGTH(45), 0x10, BYTE_COLOR);
 
 	// TextOut
 	switch(_GET_INPUT_SOURCE())
@@ -762,26 +768,29 @@ void CShowNote(void)
 		case _SOURCE_HDMI:			pStr = sHDMI;		break;
         case _SOURCE_YPBPR:         pStr = sYPBPR;      break;
 		case _SOURCE_VIDEO_SV:		pStr = sSVideo;		break;
-		case _SOURCE_VIDEO_AV:		pStr = sAV;			break;
+		case _SOURCE_VIDEO_AV:		pStr = sAV;		    break;
 		case _SOURCE_VIDEO_TV:		pStr = sTV;			break;
 	}
 	
+	// CCenterTextout(pStr,ROW(2),1,8);
 	CCenterTextout(pStr,ROW(2),1,8);
 
+    // CTextOutBase(pStr, 1, 0);
+
 	// Draw Window
-	COsdFxDrawWindow(0,8,								//WORD usXStart,WORD usYStart,  
-					_NOTE_WIDTH,_NOTE_HEIGHT,		    //WORD usXEnd,WORD usYEnd,  
-					tMainWindowStyle);					//BYTE *pStyle)
+	// COsdFxDrawWindow(0,8,								//WORD usXStart,WORD usYStart,  
+	// 				_NOTE_WIDTH,_NOTE_HEIGHT,		    //WORD usXEnd,WORD usYEnd,  
+	// 				tMainWindowStyle);					//BYTE *pStyle)
 	 
     if (GET_OSD_SIZE())
         OSDPosition(_OSD_DOUBLE_WIDTH(_NOTE_WIDTH), _OSD_DOUBLE_HEIGHT(_NOTE_HEIGHT), 0, 0, 0x03);
     else
-        OSDPosition(_NOTE_WIDTH, _NOTE_HEIGHT, 5, 5, 0x03);
+        OSDPosition(_NOTE_WIDTH, _NOTE_HEIGHT, 1, 1, 0x03);
 	
     COsdFxEnableOsd();
     CPowerPanelOn();  
 
-    CTimerReactiveTimerEvent(SEC(5), COsdDispOsdTimerEvent);
+    CTimerReactiveTimerEvent(SEC(10), COsdDispOsdTimerEvent);
     bOSDTimeOut = 0;
 #if(_SLEEP_FUNC)
     bOSDOnScreen = 1;
@@ -913,14 +922,14 @@ BYTE AdjustMenuItem(BYTE ucBeginItem,BYTE ucEndItem,BYTE ucMode)
 
      CLR_KEYREPEATENABLE();
 
-     //»Áπ˚≤Àµ•÷ª”–“ªœÓ,÷±Ω”∑µªÿ
+     //ÔøΩÔøΩÔøΩÔøΩÀµÔøΩ÷ªÔøΩÔøΩ“ªÔøΩÔøΩ,÷±ÔøΩ”∑ÔøΩÔøΩÔøΩ
      ucCount = ucEndItem - ucBeginItem;
      if(ucCount < 1)
      {
           return ucOsdState;
      }
 
-     // º∆À„œ¬“ªœÓ≤Àµ•£¨ªÚ «…œ“ª≤Àµ•
+     // ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ“ªÔøΩÔøΩÀµÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ“ªÔøΩÀµÔøΩ
      i = 0;
 
      ucNewItem = ucOsdState;
@@ -1045,10 +1054,10 @@ void TextOutCalcWidth(BYTE *pStr,BYTE row,BYTE col,BYTE ucMaxLength,BYTE ucDispl
          ucPixLen += 4;
      }
      
-     // º∆À„ Blank øÌ∂»
+     // ÔøΩÔøΩÔøΩÔøΩ Blank ÔøΩÔøΩÔøΩÔøΩ
      ucPixLen = ucDisplayPixcel - ucPixLen;
 
-     //…Ë÷√ Blank                                                       
+     //ÔøΩÔøΩÔøΩÔøΩ Blank                                                       
      Gotoxy(col + ucMaxLength,row,ALL_BYTE);
 
      pData[0] = 0x00;

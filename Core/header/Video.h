@@ -77,7 +77,7 @@ unsigned char code RTD2610_NTSC_M_ini[]=
 {
 	//need modify by 263x parameters
 	4,  _NON_AUTOINC,   _PAGE_SELECT_9F,  		    _PAGE8,         
-	4,  _NON_AUTOINC,   _P8_YCSEP_CTRL_E0,	        0x00,     // YC Seperate Control
+	4,  _NON_AUTOINC,   _P8_YCSEP_CTRL_E0,	        0x03,     // YC Seperate Control
 	4,  _NON_AUTOINC,   _P8_BPF_BW_SEL_Y_E1,	    0x25,     // BPF BandWidth Select Y
 	// andy av color
 	4,  _NON_AUTOINC,   _P8_BPF_BW_SEL_C_E2,	    0x00,     // BPF BandWidth Select C
@@ -89,7 +89,7 @@ unsigned char code RTD2610_NTSC_M_ini[]=
 	4,  _NON_AUTOINC,   _P8_H2V_CVBS_NOISE_THR_F5,	0x15,     // H2V CVBS Noise Threshold
 	4,  _NON_AUTOINC,   _P8_1D_BLEND_THR_F6,	    0x03,     // 1D Blend Threshold 
 	//
-//	4,  _NON_AUTOINC,   _P8_ZORAN_REG_EN_D7,	0x20,			//color mode reg enable	
+	4,  _NON_AUTOINC,   _P8_ZORAN_REG_EN_D7,	0x20,			//color mode reg enable	
 	4,  _NON_AUTOINC,   _P8_VIDEO_CTRL0_A0,	        0x00,					//NTSC
 
 	4,  _NON_AUTOINC,   _PAGE_SELECT_9F,  		    _PAGEA,         

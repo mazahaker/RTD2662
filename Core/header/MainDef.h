@@ -43,9 +43,9 @@
 // Debug Tool
 //--------------------------------------------------
 //_NONE,_ISP_FOR_RTD3580D_EMCU
-#define _DEBUG_TOOL                             _ISP_FOR_RTD3580D_EMCU
+#define _DEBUG_TOOL                             _NONE
 
-#define _RS232_EN								_OFF
+#define _RS232_EN								_OFF//_ON//_OFF
 
 //--------------------------------------------------
 // OSD Type
@@ -54,8 +54,6 @@
 #define _OSD002			                        2
 #define _OSD003			                        3
 #define _OSD007                                 4
-
-#define _001_OSD                                1//_DISABLE
 
 #define _OSD_TYPE								_OSD003    
 
@@ -222,7 +220,7 @@
 //--------------------------------------------------
 // Set DClk Spread Spectrum Range
 //--------------------------------------------------
-#define _DCLK_SPREAD_RANGE              		0	//0~15, 0¡÷disable, 15¡÷7.5%
+#define _DCLK_SPREAD_RANGE              		0	//0~15, 0ï¿½ï¿½disable, 15ï¿½ï¿½7.5%
 
 //--------------------------------------------------
 // Set Last Line Finetune Method
@@ -230,7 +228,7 @@
 //_LAST_LINE_METHOD_NONE,_LAST_LINE_METHOD_0,_LAST_LINE_METHOD_1,_LAST_LINE_METHOD_2
 
 #define _LAST_LINE_FINETUNE             		_LAST_LINE_METHOD_NONE
-#define _LAST_LINE_TARGET						800//1024//1680
+#define _LAST_LINE_TARGET						1024//800//1024//1680
 
 //--------------------------------------------------
 // Hardware Load Font Supported (Only No Swap)
@@ -336,8 +334,8 @@
 // Definitions of MCU Clock Divider Number
 //--------------------------------------------------
 //_FLASH_CLK_80MHZ,_FLASH_CLK_60MHZ,_FLASH_CLK_48MHZ,_FLASH_CLK_34MHZ,_FLASH_CLK_27MHZ 
-#define _FLASH_CLK_DIV                  		_FLASH_CLK_48MHZ
-#define _TURBO_MODE                     		_OFF
+#define _FLASH_CLK_DIV                  		_FLASH_CLK_48MHZ//_FLASH_CLK_48MHZ
+#define _TURBO_MODE                     		_OFF//_ON//_OFF
 
 #if(_FLASH_CLK_DIV == _FLASH_CLK_27MHZ)
 #define _FAST_READ                      		_OFF
@@ -379,7 +377,7 @@
 #define _166MHZ                         		166
 #define _200MHZ                         		200
 
-#define _MEMORY_SPEED                 			_166MHZ
+#define _MEMORY_SPEED                 			_166MHZ//_200MHZ
 /*
 MCLK =       	100 MHz      	120  		166  		200
 M value      	1E           	25   		34   		3F

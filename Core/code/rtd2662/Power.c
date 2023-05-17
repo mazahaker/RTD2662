@@ -98,6 +98,9 @@ void CPowerControl(void)
 		CScalerReset();//Alanli 20070801
 		CPowerUpCustomerControl();
         ucTVSyncFailCount = 250;
+
+		// CUartSendString("NO_SIGNAL_CPowerControl\n");
+
 		CModeResetMode();
 		CEepromSaveSystemData();	
 
@@ -132,10 +135,10 @@ void CPowerPanelOn(void)
 	{
        	CPowerPanelPowerOn();
 
-		CTimerDelayXms(40);
+		// CTimerDelayXms(40);
         CPowerDisplayPortOn();
         CScalerEnableDisplayOutput();
-        CTimerDelayXms(500);				
+        // CTimerDelayXms(500);				
     }
     //CPowerLightPowerOn();
     CMiscClearStatusRegister();
@@ -148,15 +151,15 @@ void CPowerPanelOn(void)
 //--------------------------------------------------
 void CPowerPanelOff(void)
 {
-
+// CUartSendString("CPowerLightPowerOff4\n");
     CPowerLightPowerOff();
-    CTimerDelayXms(120);
+    // CTimerDelayXms(120);
     CScalerDisableDisplayOutput();
     CPowerDisplayPortOff();
-    CTimerDelayXms(40);
+    // CTimerDelayXms(40);
 	CPowerPanelPowerOff();
     // The delay below is to prevent from short period between panel OFF and next ON
-    CTimerDelayXms(250);
+    // CTimerDelayXms(250);
 }
 
 //--------------------------------------------------

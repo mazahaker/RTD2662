@@ -43,9 +43,12 @@ void CModeHandler(void)
 		#endif
 
 		case _INITIAL_STATE:
+			CUartSendString("_INITIAL_STATE\n");
+
 			if (bSourceVideo())
             {
-               CVideoInitial();
+				CUartSendString("bSourceVideo\n");
+            	CVideoInitial();
             }
 
             SET_FIRST_SHOW_NOTE();
@@ -91,6 +94,7 @@ void CModeHandler(void)
         case _NOSIGNAL_STATE:
 		case _NOSUPPORT_STATE:
 		case _SLEEP_STATE:
+			// CUartSendString("_SLEEP_STATE\n");
 			switch (_GET_INPUT_SOURCE()) 
 			{
 				case _SOURCE_YPBPR:
@@ -98,11 +102,17 @@ void CModeHandler(void)
 				case _SOURCE_DVI:
 	            case _SOURCE_HDMI:
 					CSyncProcess();
+					// if(stConBriData.Brightness == 0) {
+					// 	CUartSendString("CModeHandler Brightness == 0\n");
+					// } else {
+					// 	CUartSendString("CModeHandler Brightness != 0\n");
+					// }
 				break;
 				#if(_VIDEO_SUPPORT == _ON)
 				case _SOURCE_VIDEO_AV:
 				case _SOURCE_VIDEO_SV:
 				case _SOURCE_VIDEO_TV:
+					CUartSendString("_VIDEO_SUPPORT == _ON\n");
 					CVideoProcess();
 				break;
 				#endif
@@ -1524,6 +1534,7 @@ void CModeStartUpDVI(void)
 	else 
 	{
 		CScalerSetByte(_AUTO_ADJ_CTRL1_7D, 0x00);
+		// CUartSendString("NO_SIGNAL_CModeStartUpDVI\n");
 		CModeResetMode();
 	}
 }
@@ -1650,8 +1661,8 @@ BYTE CModeGetScaleSetting(void)
 	
 	#else//(_DISP_INFO_BY_MODE == _ON)
 
-	stDisplayInfo.DHWidth 	= CCalcPanelWdith();//Panel[ucPanelSelect]->DHWidth;
-	//stDisplayInfo.DHWidth = Panel[ucPanelSelect]->DHWidth;
+	// stDisplayInfo.DHWidth 	= CCalcPanelWdith();//Panel[ucPanelSelect]->DHWidth;
+	stDisplayInfo.DHWidth = Panel[ucPanelSelect]->DHWidth;
 	stDisplayInfo.DVHeight = Panel[ucPanelSelect]->DVHeight;
 	stDisplayInfo.DHTotal = Panel[ucPanelSelect]->DHTotal;
 	
@@ -2138,9 +2149,11 @@ void CModeResetMode(void)
 	if(_GET_INPUT_SOURCE() != _SOURCE_HDMI)
   	#endif
 	{
+		// CUartSendString("CPowerLightPowerOff1\n");
 		CPowerLightPowerOff();	
 	}
 	#else
+	// CUartSendString("CPowerLightPowerOff2\n");
 	CPowerLightPowerOff();
 	#endif
 
@@ -2227,6 +2240,8 @@ void CModeResetMode(void)
 	else
 		CScalerSetDataPortByte(_SYNC_PROC_ACCESS_PORT_5C, _SYNC_DETECT_TOLERANCE_SET_08, 0x04);	// restore capture windows tolance,hill 20070417	
 	#endif
+
+	// CUartSendString("NO_SIGNAL_2231_Mode\n");
 
 	CLR_SHOW_NO_SIGNAL();
 	CTimerCancelTimerEvent(CModeNoSignalEvent);
@@ -2371,6 +2386,7 @@ bit CModeConnectIsChange(void)
     {
         SET_PRE_VGA_CONNECT(bVGACONNECT);
         SET_PRE_HDMI_CONNECT(bHDMICONNECT);
+		// CUartSendString("true1\n");
         return _TRUE;
     }
     SET_PRE_VGA_CONNECT(bVGACONNECT);
@@ -2379,6 +2395,7 @@ bit CModeConnectIsChange(void)
 	if ((bVGACONNECT != GET_PRE_VGA_CONNECT()) || (bDVICONNECT != GET_PRE_DVI_CONNECT())) {
 		SET_PRE_VGA_CONNECT(bVGACONNECT);//MCU VGA detect pin
 		SET_PRE_DVI_CONNECT(bDVICONNECT);//MCU DVI detect pin
+		// CUartSendString("true2\n");
 		return _TRUE;
 	}
 	SET_PRE_VGA_CONNECT(bVGACONNECT);
@@ -2387,6 +2404,7 @@ bit CModeConnectIsChange(void)
 	#else//(_TMDS_SUPPORT == _ON)
 	if ((bVGACONNECT != GET_PRE_VGA_CONNECT())) {
 		SET_PRE_VGA_CONNECT(bVGACONNECT);
+		// CUartSendString("true3\n");
 		return _TRUE;
 	}
 	SET_PRE_VGA_CONNECT(bVGACONNECT);
@@ -2652,7 +2670,7 @@ WORD CCalcPanelWdith(void)
 {
      BYTE ucRatio = CCalcRatio();
      
-	 if(ucRatio >= 75)     // ±ÈÀý±È 4:3 ¸ü´ó
+	 if(ucRatio >= 75)     // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 4:3 ï¿½ï¿½ï¿½ï¿½
 	    return Panel[ucPanelSelect]->DHWidth;
 
      // if run to here Panel Ratio is 16 : 9 or 16 : 10

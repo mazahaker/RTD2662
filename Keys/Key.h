@@ -43,7 +43,7 @@
 //--------------------------------------------------
 // Definitions of Key Repeat Start Time (Unit in sec)
 //--------------------------------------------------
-#define _KEY_REPEAT_START_TIME      0.5
+#define _KEY_REPEAT_START_TIME      0.1
 
 //--------------------------------------------------
 // Definitions of Key Mask

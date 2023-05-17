@@ -198,6 +198,7 @@ bit CSourceScanInputPort(BYTE ucSource)
     case _HDMI_D1_PORT:
         if (CSourceScanInputPortDVI(_DE_ONLY_OFF))
     	{
+			// CUartSendString("CSourceScanInputPortDVI true\n");
     		return _TRUE;
         }
     	else

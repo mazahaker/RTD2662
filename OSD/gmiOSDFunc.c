@@ -252,12 +252,12 @@ void SetCharWdith(BYTE Index,BYTE Value)
 
 	if(Index % 2)
 	{
-	    // 1 3 5 7 9 ... ´æÔÚ¸ß 4 Î»
+	    // 1 3 5 7 9 ... ï¿½ï¿½ï¿½Ú¸ï¿½ 4 Î»
 	    g_ucCharWidth[t] = (g_ucCharWidth[t] & 0x0f) | (Value << 4);  
 	}
 	else 
 	{
-	    // 0 2 4 6 8 ... ´æÔÚµÍ 4 Î»
+	    // 0 2 4 6 8 ... ï¿½ï¿½ï¿½Úµï¿½ 4 Î»
 	    g_ucCharWidth[t] = (g_ucCharWidth[t] & 0xf0) | Value;
 	}
 
@@ -271,12 +271,12 @@ BYTE GetCharWdith(BYTE Index)
 
 	if(Index % 2)
 	{
-	    // 1 3 5 7 9 ... ´æÔÚ¸ß 4 Î»
+	    // 1 3 5 7 9 ... ï¿½ï¿½ï¿½Ú¸ï¿½ 4 Î»
 	    w = (g_ucCharWidth[t] & 0xf0) >> 4;
 	}
 	else 
 	{
-	    // 0 2 4 6 8 ... ´æÔÚµÍ 4 Î»
+	    // 0 2 4 6 8 ... ï¿½ï¿½ï¿½Úµï¿½ 4 Î»
 	    w = g_ucCharWidth[t] & 0x0f;
 	}
 
@@ -288,7 +288,7 @@ BYTE GetCharWdith(BYTE Index)
 
 void CSetBlankWidth(BYTE x,BYTE y,BYTE ucWidth)
 {
-	//ÉèÖÃ Blank                                                       
+	//ï¿½ï¿½ï¿½ï¿½ Blank                                                       
 	Gotoxy(x,y,ALL_BYTE);
 
 	pData[0] = 0x00;
@@ -561,7 +561,7 @@ void OSDClear(BYTE row_start, BYTE height,
 void OutputDisplaySize()
 {
      //unsigned int  usHwid;
-     //Data[0] ³¤¶È²»¶¨ËùÒÔÔÚºóÃæ²ÅÄÜµÃµ½
+     //Data[0] ï¿½ï¿½ï¿½È²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½ï¿½ÜµÃµï¿½
      //pData[1] = N_INC;
      //pData[2] = _OSD_DATA_PORT_92;
      if(stModeInfo.IHWidth / 1000)    pData[0] = '1';
@@ -1025,8 +1025,8 @@ void BurnInRun()
 
 //----------------------------------------------------------- 
 //  ucNumber:      0~65535
-//  ucUserDefLong: 0   --> ×Ô¶¯¼ÆËãucNumber³¤¶È£¬ÓÐ¼¸Î»Êä³ö¼¸Î»
-//                 1~5 --> Êä³ö1~5Î»£¬²»×ãÓÃ0²¹
+//  ucUserDefLong: 0   --> ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ucNumberï¿½ï¿½ï¿½È£ï¿½ï¿½Ð¼ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Î»
+//                 1~5 --> ï¿½ï¿½ï¿½1~5Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½
 //  exp:           ucNumber = 12
 //                 ucUserDefLong = 0    Output:  12
 //                 ucUserDefLong = 3    Output:  012

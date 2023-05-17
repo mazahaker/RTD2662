@@ -64,7 +64,7 @@ bit CTVEnable(void)
 //---------------------------------------------------------------------------
 bit MDisplayRatioEnable(void)
 {
-    if(CCalcRatio() >= 75)      // ÆÁµÄ±ÈÀý 4:3 »ò 5:4
+    if(CCalcRatio() >= 75)      // ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ 4:3 ï¿½ï¿½ 5:4
         return _FAIL;
     
     return _TRUE;
@@ -651,6 +651,13 @@ void BrightAdjust(BYTE ucMode)
     // ucMode : _INC or _DEC
     SET_KEYREPEATENABLE();
     stConBriData.Brightness = ValueInRangeChange(0, 100, stConBriData.Brightness, _NON_LOOP | ucMode);
+
+// if(stConBriData.Brightness == 0) {
+// CUartSendString("CModeHandler Brightness0 == 0\n");
+// } else {
+// CUartSendString("CModeHandler Brightness0 != 0\n");
+// }
+
     CAdjustBrightness();
     ucOsdEventMsg = _SAVE_EE_COLORPROC0_MSG;
     
@@ -6400,6 +6407,7 @@ void MDisplayRatioEnterSubMenu(void)
     CLR_CLEAR_OSD_EN();
     CEepromSaveSystemData();
 
+// CUartSendString("CPowerLightPowerOff5\n");
     CPowerLightPowerOff();        
     CMuteOn();
 /*    
@@ -7529,6 +7537,13 @@ void MScBrgithnessValueAdj(BYTE ucMode)
     // ucMode : _INC or _DEC
     SET_KEYREPEATENABLE();
     stConBriData.Brightness = ValueInRangeChange(0, 100, stConBriData.Brightness, _NON_LOOP | ucMode);
+
+// if(stConBriData.Brightness == 0) {
+// 						CUartSendString("CModeHandler Brightness1 == 0\n");
+// 					} else {
+// 						CUartSendString("CModeHandler Brightness1 != 0\n");
+// 					}
+
     CAdjustBrightness();
     ucOsdEventMsg = _SAVE_EE_COLORPROC0_MSG;
     
@@ -7829,33 +7844,35 @@ void CShowHDMIMode(BYTE x,BYTE y,bit bShowTable)
     
     	CScalerPageSelect(_PAGE2);
     	CScalerGetDataPortByte(_P2_HDMI_ADDR_PORT_C9, _P2_HDMI_VCR_50, 1, pData, _NON_AUTOINC);
-    	stModeInfo.IVHeight = HDMI_V_Height;
+    	// stModeInfo.IVHeight = HDMI_V_Height;
     
-    	if((pData[0]&0x0F) == 0x01)			// 2 times
-    		stModeInfo.IHWidth = HDMI_H_Width*2;
-    	else if((pData[0]&0x0F) == 0x03)	// 4 times
-    		stModeInfo.IHWidth = HDMI_H_Width*4;
-    	else
-            stModeInfo.IHWidth = HDMI_H_Width;
+    	// if((pData[0]&0x0F) == 0x01)			// 2 times
+    	// 	stModeInfo.IHWidth = HDMI_H_Width*2;
+    	// else if((pData[0]&0x0F) == 0x03)	// 4 times
+    	// 	stModeInfo.IHWidth = HDMI_H_Width*4;
+    	// else
+        //     stModeInfo.IHWidth = HDMI_H_Width;
     
-    	ucLen = stModeInfo.IVHeight;
-    	CScalerRead(_IPV_ACT_LEN_H_1A, 1, pData, _AUTOINC);
+    	// ucLen = stModeInfo.IVHeight;
+    	// CScalerRead(_IPV_ACT_LEN_H_1A, 1, pData, _AUTOINC);
     
-    	if (pData[0] & _BIT5)
-    		ucLen = stModeInfo.IVHeight*2;
+    	// if (pData[0] & _BIT5)
+    	// 	ucLen = stModeInfo.IVHeight*2;
     
-    	if (GET_INTERLACE_MODE())
-        {
-    		if(stModeInfo.IVFreq>=598 && stModeInfo.IVFreq<=599)			//60Hz
-    			stModeInfo.IVFreq += 2;
-    		else if(stModeInfo.IVFreq>=498 && stModeInfo.IVFreq<=499)	//50Hz
-    			stModeInfo.IVFreq += 2;
-    	}
+    	// if (GET_INTERLACE_MODE())
+        // {
+    	// 	if(stModeInfo.IVFreq>=598 && stModeInfo.IVFreq<=599)			//60Hz
+    	// 		stModeInfo.IVFreq += 2;
+    	// 	else if(stModeInfo.IVFreq>=498 && stModeInfo.IVFreq<=499)	//50Hz
+    	// 		stModeInfo.IVFreq += 2;
+    	// }
     
         Gotoxy(x, y, BYTE_DISPLAY);
-        CShowNumber1((stModeInfo.IHWidth > 1920) ? 1920 : stModeInfo.IHWidth, 0);
+        // CShowNumber1((stModeInfo.IHWidth > 1920) ? 1920 : stModeInfo.IHWidth, 0);
+        CShowNumber1(stModeInfo.IHWidth);
         OutputChar(0x2D);  // "X"
-        CShowNumber1((ucLen > 1200) ? 1200 : ucLen, 0);
+        // CShowNumber1((ucLen > 1200) ? 1200 : ucLen, 0);
+        CShowNumber1(stModeInfo.IVHeight, 0);
         OutputChar(0x2D);  // "X"
         CShowNumber1(stModeInfo.IVFreq/10, 0);
         OutputChar(0x19);  // "H"

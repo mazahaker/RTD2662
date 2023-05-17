@@ -9,7 +9,7 @@
  * 	This file is for time function-structure's declaration.
  *
  * @author 	$Author: kingee $
- * @date 	$Date: 2006-06-09 11:09:32 +0800 (?Ÿæ?äº? 09 ?­æ? 2006) $
+ * @date 	$Date: 2006-06-09 11:09:32 +0800 (?ï¿½ï¿½?ï¿½? 09 ?ï¿½ï¿½? 2006) $
  * @version 	$Revision: 872 $
  * @ingroup 	timer
  */

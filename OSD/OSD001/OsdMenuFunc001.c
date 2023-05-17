@@ -76,9 +76,8 @@ void CPDrawMainMenu(BYTE ucDrawID)
     switch(ucDrawID)
     {
         // Menu Draw ID
-        case _DRAW_ENTER_MENU:              //½øÈëµ±Ç°µÄ²Ëµ¥Ê±µ÷ÓÃ
+        case _DRAW_ENTER_MENU:              //ï¿½ï¿½ï¿½ëµ±Ç°ï¿½Ä²Ëµï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 #if(_UART_SND_EN == _ON)
-        	 CUartSendString("Init Osd.\n");
 #endif        	 
              InitOsdFrame();
 			 OSDPosition(_MAINMENU_WIDTH * 12,_MAINMENU_HEIGHT * 18,50,85,0x03);
@@ -87,11 +86,11 @@ void CPDrawMainMenu(BYTE ucDrawID)
              COsdFxEnableOsd();
              break;
              
-        case _DRAW_BEFORE_RETURN_PARENTMENU://·µ»Øµ½ÉÏÒ»¼¶²Ëµ¥Ö®Ç°...
+        case _DRAW_BEFORE_RETURN_PARENTMENU://ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ëµï¿½Ö®Ç°...
              COsdFxDisableOsd();
         	 break;
-        case _DRAW_BEFORE_ENTER_SUBMENU:    //½øÈë×Ó²Ëµ¥Ö®Ç°...
-        case _DRAW_FROM_SUBMENU_RETURN:     //´Ó×Ó²Ëµ¥·µ»Ø
+        case _DRAW_BEFORE_ENTER_SUBMENU:    //ï¿½ï¿½ï¿½ï¿½ï¿½Ó²Ëµï¿½Ö®Ç°...
+        case _DRAW_FROM_SUBMENU_RETURN:     //ï¿½ï¿½ï¿½Ó²Ëµï¿½ï¿½ï¿½ï¿½ï¿½
              break;
     }
 }
@@ -110,17 +109,17 @@ void CMIDrawBrightness(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
               CCenterTextout(sBrightness[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
               DRAW_SLIDER(stConBriData.Brightness);
               break;
               
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
 
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -149,17 +148,17 @@ void CMIDrawContrast(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
              CCenterTextout(sContrast[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              DRAW_SLIDER(stConBriData.Contrast);
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }   
@@ -187,17 +186,17 @@ void CMIDrawHue(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
              CCenterTextout(sHue[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              DRAW_SLIDER(GET_HUE());
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -228,17 +227,17 @@ void CMIDrawSaturation(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
              CCenterTextout(sSaturation[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              DRAW_SLIDER(GET_SATURATION());
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -269,17 +268,17 @@ void CMIDrawPhase(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
              CCenterTextout(sPhase[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              DRAW_SLIDER(50);
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -305,17 +304,17 @@ void CMIDrawClock(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
              CCenterTextout(sClock[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              DRAW_SLIDER(50);
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -361,8 +360,8 @@ void CMIDrawDisplayMode(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
              
              CCenterTextout(sDisplayMode[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
 			 CCenterTextout(sFull[GET_LANGUAGE()],ROW(1),COL(0),10);
@@ -370,11 +369,11 @@ void CMIDrawDisplayMode(BYTE ucDrawID)
 			 CDrawDisplayModeState();
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -404,17 +403,17 @@ void CMIDrawAutoAdjust(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
              
              CCenterTextout(sAutoAdjust[GET_LANGUAGE()],ROW(1),COL(0),_MAINMENU_WIDTH);
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -444,17 +443,17 @@ void CMIDrawTVSystem(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî            
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½            
              CCenterTextout(sTVSystem[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              CCenterTextout(sTVType[ucTVType],ROW(1),COL(0),_MAINMENU_WIDTH);
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              ucOSDAdjTemp = 0;
              break;
      }
@@ -626,17 +625,17 @@ void CMIDrawAutoSearch(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî            
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½            
              CCenterTextout(sAutoSearch[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              CShowCurrentChannelFreq();
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -666,17 +665,17 @@ void CMIDrawManualSearch(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî            
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½            
              CCenterTextout(sManualSearch[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              CShowCurrentChannelFreq();
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -702,17 +701,17 @@ void CMIDrawTunning(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî            
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½            
              CCenterTextout(sTunning[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              CShowCurrentChannelFreq();
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -765,21 +764,21 @@ void CMIDrawSwap(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî            
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½            
              CCenterTextout(sSwap[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              CShowNumber(9, 1, stTvInfo.CurChn);
              ucPrevChannel = stTvInfo.CurChn;
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              if (ucOSDAdjTemp && ucPrevChannel != stTvInfo.CurChn)
                  CSaveSwap();
              CClearClientOSD();
              ucOSDAdjTemp = 0;
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -808,17 +807,17 @@ void CMIDrawChannel(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî            
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½            
              CCenterTextout(sChannel[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              CShowNumber(9, 1, stTvInfo.CurChn);
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -851,17 +850,17 @@ void CMIDrawSkip(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî            
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½            
              CCenterTextout(sSkip[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              CCenterTextout(sOnOff[CLoadChannelSkip(stTvInfo.CurChn)][GET_LANGUAGE()],ROW(1),COL(0),_MAINMENU_WIDTH);
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -903,17 +902,17 @@ void CMIDrawLanguage(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî            
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½            
              CCenterTextout(sLanguage[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              CCenterTextout(sLanguageName[GET_LANGUAGE()],ROW(1),COL(0),_MAINMENU_WIDTH);
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -958,17 +957,17 @@ void CMIDrawBlue(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
              CCenterTextout(sBlue[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              CCenterTextout(sOnOff[_GET_BLUE_BACKGROUND()][GET_LANGUAGE()],ROW(1),COL(0),_MAINMENU_WIDTH);
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -997,17 +996,17 @@ void CMIDrawVolume(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
              CCenterTextout(sVolume[GET_LANGUAGE()],ROW(0),COL(0),_MAINMENU_WIDTH);
              DRAW_SLIDER(GET_VOLUME());
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }
@@ -1036,16 +1035,16 @@ void CMIDrawExit(BYTE ucDrawID)
 {
      switch(ucDrawID)
      {
-         case _DRAW_SELECT:           //Ñ¡ÖÐ×´Ì¬
-         case _DRAW_MENU_ITEM:        //»­²Ëµ¥Ïî
+         case _DRAW_SELECT:           //Ñ¡ï¿½ï¿½×´Ì¬
+         case _DRAW_MENU_ITEM:        //ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
              CCenterTextout(sExit[GET_LANGUAGE()],ROW(1),COL(0),_MAINMENU_WIDTH);
              break;
              
-         case _DRAW_NORMARL:          //±ê×¼×´Ì¬
+         case _DRAW_NORMARL:          //ï¿½ï¿½×¼×´Ì¬
              CClearClientOSD();
              break;
              
-         case _DRAW_DISABLE:          //½ûÓÃ×´Ì¬
+         case _DRAW_DISABLE:          //ï¿½ï¿½ï¿½ï¿½×´Ì¬
              break;
      }
 }

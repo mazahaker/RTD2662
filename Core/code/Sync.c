@@ -52,6 +52,8 @@ void CSyncProcess(void)
                     bDVIDetect = 0;
 					#endif
 
+					// CUartSendString("!!CModeDetect\n");
+
 					ucCurrState = _NOSIGNAL_STATE;
 					#if (_HDMI_SUPPORT == _ON)
 					if( CHdmiFormatDetect()
@@ -80,6 +82,7 @@ void CSyncProcess(void)
                     	bHot_Plug = _HOT_PLUG_LOW;
                     	CTimerDelayXms(300);
                     	bHot_Plug = _HOT_PLUG_HI;
+						// CUartSendString("NO_SIGNAL_1\n");
                         CModeResetMode();
                         return;
                     }
@@ -94,12 +97,14 @@ void CSyncProcess(void)
 					#else
                 	if(_GET_INPUT_SOURCE() != _SOURCE_HDMI)
 					#endif
+					// CUartSendString("CPowerLightPowerOff3\n");
                     	CPowerLightPowerOff();
 
                     bShowOSDCurr = (bit)(CScalerGetBit(_OVERLAY_CTRL_6C, _BIT0));
                     CScalerSetBit(_OVERLAY_CTRL_6C, ~_BIT0, 0x00);
 					if(!CModeDisplayActiveMode())
 					{
+						// CUartSendString("NO_SIGNAL_2\n");
 						CModeResetMode();
 						break;
 					}
@@ -115,6 +120,13 @@ void CSyncProcess(void)
 						CHdmiAudioFirstTracking();
 						CTimerReactiveTimerEvent(SEC(0.1), CHdmiAudioWaitingFlagReadyEven);
 						ucHdmiTimerEvent = _HDMI_CHECK_CNT;
+
+						// if(stConBriData.Brightness == 0) {
+						// 	CUartSendString("Brightness == 0\n");
+						// } else {
+						// 	CUartSendString("Brightness != 0\n");
+						// }
+						
 					}
 					else
 					{							
@@ -138,8 +150,8 @@ void CSyncProcess(void)
 			else
 			{
 				#if(_HDMI_SUPPORT == _ON)
-				if (CHdmiFormatDetect() && (_GET_INPUT_SOURCE() == _SOURCE_DVI || _GET_INPUT_SOURCE() == _SOURCE_HDMI))//for Philips DVD
-					CTimerDelayXms(50);//for Philips DVD
+				// if (CHdmiFormatDetect() && (_GET_INPUT_SOURCE() == _SOURCE_DVI || _GET_INPUT_SOURCE() == _SOURCE_HDMI))//for Philips DVD
+				// 	CTimerDelayXms(50);//for Philips DVD
             	#endif
 			}                                             
 			ucTimerEvent = _INACTIVE_COUNTDOWN_EVENT;
@@ -167,6 +179,7 @@ void CSyncProcess(void)
 			#endif
 
 	  		//fram sync unstable
+			//   CUartSendString("NO_SIGNAL_3\n");
 	  		CModeResetMode();
 			break;
 	  	}
@@ -190,6 +203,7 @@ void CSyncProcess(void)
 					//CModeHDMIChageDelay();
 				#endif
 	
+				// CUartSendString("NO_SIGNAL_4\n");
 				CModeResetMode();
 				break;
             }
@@ -202,6 +216,7 @@ void CSyncProcess(void)
             		{
             			if(!GET_HDMIINPUT()) 
 						{	
+							// CUartSendString("NO_SIGNAL_5\n");
                				CModeResetMode();	
 							break;
                			}
@@ -215,6 +230,7 @@ void CSyncProcess(void)
 					{
                 		if(GET_HDMIINPUT())
 						{
+							// CUartSendString("NO_SIGNAL_6\n");
                 			CModeResetMode();			
 							break;
                     	}
@@ -238,6 +254,7 @@ void CSyncProcess(void)
 		//	CAdjustBackgroundColor(0xff, 0x00, 0x00);
 		}
 		if (CModeConnectIsChange() || CModeIsChange())
+		// CUartSendString("NO_SIGNAL_7\n");
 			CModeResetMode();
 		break;
 		
@@ -268,6 +285,7 @@ void CSyncProcess(void)
 		if ((CModeConnectIsChange() || CSourceHandler()) && !bSourceVideo())
 		{
 			CPowerLedOn();
+			// CUartSendString("NO_SIGNAL_8\n");
 			CModeResetMode();
 		}
 		break;
@@ -277,6 +295,7 @@ void CSyncProcess(void)
 		if ((CModeConnectIsChange() || CSourceHandler()) && !bSourceVideo())
 		{
 			CPowerLedOn();
+			// CUartSendString("NO_SIGNAL_9\n");
 			CModeResetMode();
 		}
 		break;
@@ -465,8 +484,10 @@ bit CSyncHandler(void)
         if (_SOURCE_DVI == _GET_INPUT_SOURCE() || _SOURCE_HDMI == _GET_INPUT_SOURCE())
 		   CTimerDelayXms(5);
        // else
-	    CTimerDelayXms(4);
-		
+	    // CTimerDelayXms(4);
+
+		// CUartSendString("!!CSyncHandler\n");
+
 		ucInputSyncType = CSyncMeasureSyncType();
 
 		switch (ucInputSyncType)
@@ -497,11 +518,15 @@ bit CSyncHandler(void)
                     if (!GET_HDMIINPUT())//_GET_INPUT_SOURCE() != _SOURCE_HDMI)
                     {
                        // _SET_INPUT_SOURCE(_SOURCE_HDMI);
+					//    CUartSendString("NO_SIGNAL_10\n");
                         CModeResetMode();
                     }
                 }
                 else
+				{
                     CLR_HDMIINPUT();
+					// CUartSendString("CLR_HDMIINPUT\n");
+				}
 
 				//	_SET_INPUT_SOURCE(_SOURCE_DVI);
             }

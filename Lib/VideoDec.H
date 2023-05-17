@@ -121,8 +121,8 @@
 // V0 with V1 or V1 with V2 or V2 with V3.
 
 //                                 |    Y input     |  C input   |
-#define _AV_CHANNEL                (_V1_INPUT << 4)
-#define _SV_CHANNEL                (_V1_INPUT << 4)  |  _V2_INPUT
+#define _AV_CHANNEL                (_V2_INPUT << 4)
+#define _SV_CHANNEL                (_V2_INPUT << 4)  | _V1_INPUT 
 #define _TV_CHANNEL                (_V3_INPUT << 4)
 
 

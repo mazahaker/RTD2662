@@ -14,7 +14,7 @@
 enum PresetModeDef
 {
 	    _MODE_640x350_70HZ = 0,         	// Mode 00: 640x350_70Hz, 720x350_70Hz
-	   // _MODE_640x350_85HZ,             	// Mode 01: 640x350_85Hz
+	    _MODE_640x350_85HZ,             	// Mode 01: 640x350_85Hz
 	    _MODE_640x400_56HZ,					// Mode 02: 640x400_56Hz
 	    _MODE_640x400_70HZ,					// Mode 03: 640x400_70Hz, 720x400_70Hz
 	    _MODE_720x400_70HZ,             	// Mode 04: 640x400_70Hz, 720x400_70Hz
@@ -31,7 +31,7 @@ enum PresetModeDef
 	    _MODE_800x600_72HZ,             	// Mode 15:
 	    _MODE_800x600_75HZ,             	// Mode 16:
 	    _MODE_800x600_85HZ,             	// Mode 17:
-//	    _MODE_832x624_75HZ,             	// Mode 18:
+	    _MODE_832x624_75HZ,             	// Mode 18:
 	    _MODE_1024x768_60HZ,            	// Mode 18:
     	_MODE_1024x768_66HZ,          		// Mode 19:
 	    _MODE_1024x768_70HZ,            	// Mode 20:
@@ -86,6 +86,7 @@ enum PresetModeDef
 		_MODE_1280x720_50HZ,            	// Mode 65:
 		_MODE_1920x1080i_50HZ,          	// Mode 66:
     	_MODE_1920x1080_50HZ,           	// Mode 67:
+    	_MODE_1024x600_60HZ,           	    // Mode 68:
     	
 	    // end
         _MAX_PRESET_MODE,
@@ -122,7 +123,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         800, 449,                                                           // IHTotal, IVTotal,
         144, 62,                                                            // IHStartPos, IVStartPos,
     },
-      /*
+      
     {   // Mode 1 : 640 x 350 x 85 Hz
         0 | _SYNC_HP_VN,                                                    // Polarity Flags,
         640, 350,                                                           // InputWidth, InputHeight,
@@ -130,7 +131,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         _HFREQ_TOLERANCE + 5, _VFREQ_TOLERANCE + 5,                                 // IHFreqTolerance in kHz, IVFreqTolerance in Hz,
         832, 445,                                                           // IHTotal, IVTotal,
         160, 63,                                                            // IHStartPos, IVStartPos,
-    }, */
+    }, 
 
     {   // Mode 2 : 640 x 400 x 56 Hz
         0 |  _SYNC_HN_VN,                        			    			// Polarity Flags,
@@ -281,14 +282,14 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
     },
 
 	//eric 200706020
-    /*{   // Mode 18 : 832 x 624 x 75 Hz
+    {   // Mode 18 : 832 x 624 x 75 Hz
         0 | _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,          // Polarity Flags,
         832, 624,                                                           // InputWidth, InputHeight,
         497, 745,                                                           // IHFreq in kHz, IVFreq in Hz,
         _HFREQ_TOLERANCE, _VFREQ_TOLERANCE,                                 // IHFreqTolerance in kHz, IVFreqTolerance in Hz,
         1152, 667,                                                          // IHTotal, IVTotal,
         288, 42,                                                            // IHStartPos, IVStartPos,
-    },*/
+    },
 
     {   // Mode 18 : 1024 x 768 x 60 Hz
         0 | _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HP_VP,                        // Polarity Flags,
@@ -740,6 +741,14 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         _HFREQ_TOLERANCE, _VFREQ_TOLERANCE,                                 // HFreqTolerance in kHz, VFreqTolerance in Hz,
         2576, 1120,                                                         // HTotal, VTotal,
         528, 37,                                                            // HStartPos, VStartPos,
+    },
+    {   // Mode 68 : 1024 x 600 x 60 Hz
+        0 | _SYNC_HP_VN,                                                    // Polarity Flags,
+        1024, 600,                                                          // InputWidth, InputHeight,
+        483, 600,                                                           // IHFreq in kHz, IVFreq in Hz,
+        _HFREQ_TOLERANCE, _VFREQ_TOLERANCE,                                 // IHFreqTolerance in kHz, IVFreqTolerance in Hz,
+        1312, 622,                                                          // IHTotal, IVTotal,
+        40, 1,                                                              // IHStartPos, IVStartPos,
     },
 };
 

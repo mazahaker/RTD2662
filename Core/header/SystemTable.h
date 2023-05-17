@@ -182,8 +182,8 @@ BYTE code tTTL_INITIAL[] =
 
 BYTE code tLVDS_INITIAL[] =
 {
-//    5,  	_AUTOINC,       	_TCON_ADDR_PORT_8B,             	_TCON_CTRL0_00,0x01,
-    5,  	_AUTOINC,       	_TCON_ADDR_PORT_8B,             	_TCON_CTRL0_00,0x09,  // hill modify,060915
+   5,  	_AUTOINC,       	_TCON_ADDR_PORT_8B,             	_TCON_CTRL0_00,0x01,
+    // 5,  	_AUTOINC,       	_TCON_ADDR_PORT_8B,             	_TCON_CTRL0_00,0x09,  // hill modify,060915
 //    5,  _AUTOINC,       _TCON_ADDR_PORT_8B,             0x01,0x08,//cyc:driving current not yet finished
     4,  	_NON_AUTOINC,   	_TCON_ADDR_PORT_8B,             	_TCON_LVDS_CTRL0_A0,
     /*

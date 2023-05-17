@@ -29,13 +29,13 @@ void COsdHandler(void)
 	//	CUartPrintf("Osd Event:",ucOsdEventMsg);
 		
 
-    // Ö´ÐÐµ±Ç°²Ëµ¥µÄË½ÓÐ´¦Àíº¯Êý
+    // Ö´ï¿½Ðµï¿½Ç°ï¿½Ëµï¿½ï¿½ï¿½Ë½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     if(CURRENT_MENU_ITEM.Proc != NULL)
     {
         fPublicFunc = CURRENT_MENU_ITEM.Proc();
     }
 
-    // Ö´ÐÐ¹«ÓÐµÄ´¦Àíº¯Êý
+    // Ö´ï¿½Ð¹ï¿½ï¿½ÐµÄ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     if(fPublicFunc && (CURRENT_MENU_ITEM.Option & _EN_PUB_PROCFUNC))
     {
          CMenuProc();         
@@ -438,13 +438,13 @@ void CChangeMenuItem(BYTE ucMode)
 
      CLR_KEYREPEATENABLE();
 
-     //Èç¹û²Ëµ¥Ö»ÓÐÒ»Ïî,Ö±½Ó·µ»Ø
+     //ï¿½ï¿½ï¿½ï¿½Ëµï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½,Ö±ï¿½Ó·ï¿½ï¿½ï¿½
      if(CURRENT_MENU.MenuItemCount <= 1)
      {
           return;
      }
 
-     // ¼ÆËãÏÂÒ»Ïî²Ëµ¥£¬»òÊÇÉÏÒ»²Ëµ¥
+     // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ëµï¿½
      i = 0;
 
      ucNewItem = ValueInRangeChange(0, CURRENT_MENU.MenuItemCount - 1, g_ucMenuItemIndex, ucMode | _LOOP);

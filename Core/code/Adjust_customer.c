@@ -48,6 +48,11 @@ void CAdjustBrightness(void)
 		pData[0] = (0x80 + stConBriData.Brightness - 78);
 		pData[1] = (0x80 + stConBriData.Brightness - 78);
 		pData[2] = (0x80 + stConBriData.Brightness - 78);
+		// if(stConBriData.Brightness == 0) {
+			// CUartSendString("CModeHandler Brightness2 == 0\n");
+		// } else {
+			// CUartSendString("CModeHandler Brightness2 != 0\n");
+		// }
     }
 	CAdjustSetBrightness();
     CAdjustBacklight();
@@ -592,7 +597,7 @@ void CAdjustHueSatSet(BYTE color, SWORD TempU1, SWORD TempU2, SWORD TempV1, SWOR
     //CTimerWaitForEvent(_EVENT_DEN_STOP);
     CScalerSetByte(_P7_ICM_SEL_D1,value);
     CScalerSetByte(_P7_ICM_ACCESS_PORT_D2,((color & 0xf0)+0x03));
-	//CScalerSendAddr(_P7_ICM_DATA_PORT_D3, _WRITE, _NON_AUTOINC);//provisional �ȩw
+	//CScalerSendAddr(_P7_ICM_DATA_PORT_D3, _WRITE, _NON_AUTOINC);//provisional �ȩw
 	
     for(i=1; i<9; i++)
     {
@@ -1107,7 +1112,11 @@ void CAdjustBacklight(void)
 		stSystemData.BackLight = stConBriData.Brightness;//GET_BRIGHTNESS();
 	else
 		stSystemData.BackLight = 0;
-
+// if(stConBriData.Brightness == 0) {
+// CUartSendString("CModeHandler Brightness3 == 0\n");
+// } else {
+// CUartSendString("CModeHandler Brightness3 != 0\n");
+// }
     ucLight = (WORD)(_BACKLIGHT_MAX - _BACKLIGHT_MIN) * stSystemData.BackLight/100;
 
 	#if(_BACKLIGHT_PWM_INVERSE == _ENABLE)

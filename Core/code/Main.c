@@ -68,7 +68,7 @@ void CMainSystemInitial(void)
 
     // Initial MCU
 	CMcuInitial();
-    CMuteOn();
+    // CMuteOn(); // отключаем звук
 
 	#if( (_HDCP_SUPPORT == _ON) && _HDMI_HOT_PLUG_OPTION)
    	bHot_Plug = _HOT_PLUG_LOW;
@@ -86,7 +86,7 @@ void CMainSystemInitial(void)
 	CEepromStartupCheck();
 
     _SET_INPUT_SOURCE(_SOURCE_HDMI);
-    //SET_POWERSTATUS();
+    // SET_POWERSTATUS();
 
     // Initial scaler settings
 	CScalerInitial();
@@ -110,8 +110,45 @@ void CMainSystemInitial(void)
 	#if(_FAST_READ == _ON)
 	CMCUSetFlashClk();
 	#endif
-	 
-    CIrdaInitial();
+
+	// init av directly
+	// kx_CSelectVideoChannel(_AV_CHANNEL, 0);
+    // CIrdaInitial(); // уже инициализируется в CScalerInitial
+}
+
+void ChangeSourceReset(void)
+{
+    ChangeSourceState();
+	CEepromSaveSystemData();
+    ucTVSyncFailCount = 250;
+    CLR_CLEAR_OSD_EN();
+    CModeResetMode();
+	CLR_SOURCE_AUTOCHANGE();
+    CShowNote();
+    CLR_CLEAR_OSD_EN();
+    SET_FIRST_SHOW_NOTE();
+}
+
+void CEnableAvEvent(void) {
+	// CUartSendString("_SOURCE_VIDEO_AV\n");
+	_SET_INPUT_SOURCE(_SOURCE_VIDEO_AV);
+	ChangeSourceReset();
+}
+
+void CEnableHDMIEvent(void) {
+	// CUartSendString("_SOURCE_HDMI\n");
+	_SET_INPUT_SOURCE(_SOURCE_HDMI);
+	ChangeSourceReset();
+}
+
+void CAvRearHandler() {
+	if(_MCU_PORT57 && _GET_INPUT_SOURCE() != _SOURCE_HDMI) {
+		CEnableHDMIEvent();
+		// CTimerActiveTimerEvent(SEC(0.5),CEnableHDMIEvent);
+	} else if(!_MCU_PORT57 && _GET_INPUT_SOURCE() != _SOURCE_VIDEO_AV) {
+		// CTimerActiveTimerEvent(SEC(0.5),CEnableAvEvent);
+		CEnableAvEvent();
+	}	
 }
 
 /**
@@ -123,37 +160,25 @@ void CMainSystemInitial(void)
  *
 */
 void main(void)
-{          
-	//bit fTest = 1;
-    
-	CMainSystemInitial();
-    
+{              
+	CMainSystemInitial();	
+    // CUartInit();
 	bLED1 = _LED_OFF;
 	bLED2 = _LED_OFF;
 
-	bHot_Plug = _HOT_PLUG_HI;
+	// bHot_Plug = _HOT_PLUG_HI;
+
+	// CUartSendString("Start\n");
 	
-	//CTimerDelayXms(4000);
-
-	/*while(fTest)
-    {
-        //bPANELPOWER ^= 1;
-        //bLIGHTPOWER ^= 1;
-
-        bLED1 ^= 1;
-		bLED2 ^= bLED1;
-
-		CTimerDelayXms(250);
-    }*/
 
     do
 	{
 		#if(_DEBUG_EN)
 		CMiscIspDebugProc();
         #endif
-
 		CTimerHandler();
         CKeyHandler();
+		CAvRearHandler();
 		CModeHandler();
 		COsdHandler();
 	}	

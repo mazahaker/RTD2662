@@ -52,53 +52,53 @@ void Delay5us(void)
 BYTE CI2cStart(BYTE ucDeviceAddr)
 {
 
-    SETI2CSCL();
-    Delay5us();
-    while(!(CHECKI2CSCL()));
-    SETI2CSDA();
-    CLRI2CSDA();
-    Delay5us();
-    CLRI2CSCL();
+    // SETI2CSCL();
+    // Delay5us();
+    // while(!(CHECKI2CSCL()));
+    // SETI2CSDA();
+    // CLRI2CSDA();
+    // Delay5us();
+    // CLRI2CSCL();
 
     return CI2cSendByte(ucDeviceAddr);
 }
 
 void CI2cStop(void)
 {
-    CLRI2CSDA();
-    SETI2CSCL();
-    Delay5us();
-    SETI2CSDA();
+    // CLRI2CSDA();
+    // SETI2CSCL();
+    // Delay5us();
+    // SETI2CSDA();
 }
 
 BYTE CI2cGetAck(void)
 {
     BYTE ack;
 
-    SETI2CSDA();
-    SETI2CSCL();
-    Delay5us();
-    ack = CHECKI2CSDA();
-    CLRI2CSCL();
-    SETI2CSDA();
+    // SETI2CSDA();
+    // SETI2CSCL();
+    // Delay5us();
+    // ack = CHECKI2CSDA();
+    // CLRI2CSCL();
+    // SETI2CSDA();
 
     return ack;
 }
 
 void CI2cSendAck(void)
 {
-    CLRI2CSDA();
-    SETI2CSCL();
-    Delay5us();
-    CLRI2CSCL();
+    // CLRI2CSDA();
+    // SETI2CSCL();
+    // Delay5us();
+    // CLRI2CSCL();
 }
 
 void CI2cSendNoAck(void)
 {
-    SETI2CSDA();
-    SETI2CSCL();
-    Delay5us();
-    CLRI2CSCL();
+    // SETI2CSDA();
+    // SETI2CSCL();
+    // Delay5us();
+    // CLRI2CSCL();
 }
 
 

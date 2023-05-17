@@ -38,12 +38,12 @@
 //--------------------------------------------------
 // Function Supported's define
 //--------------------------------------------------
-#define _VGA_SUPPORT                            _ON
+#define _VGA_SUPPORT                            _OFF
 #define _HDMI_SUPPORT							              _ON
 #define _TMDS_SUPPORT                   		    _OFF
 #define _VIDEO_SUPPORT                  		    _ON
-#define _VIDEO_AV_SUPPORT                       _OFF
-#define _VIDEO_SV_SUPPORT                       _ON
+#define _VIDEO_AV_SUPPORT                       _ON
+#define _VIDEO_SV_SUPPORT                       _OFF
 #define _VIDEO_TV_SUPPORT                       _OFF
 #define _VIDEO_YUV_SUPPORT                      _OFF
 #define _VIDEO_SCART_SUPPORT                    _OFF
@@ -215,9 +215,9 @@ _SOURCE_YPBPR,     _SOURCE_NONE
 // _PIN_101 connects to a three-pin thingy, very likely the collector of an npn transistor. The base is pulled down to ground and
 // then goes to the ACC pin on the AV input header. It's designed to plug into the RFLS pin of a ISO car audio connector, which
 // goes to +12v when the car's put into reverse.
-#define _PIN_101								(2 & 0x07)	// 0 ~ 4 (0: P5D7i, 1: P5D7o<open-drain>, 2: P5D7o<push-pull>, 3: PWM5, 4: TCON[0])
+#define _PIN_101								(1 & 0x07)	// 0 ~ 4 (0: P5D7i, 1: P5D7o<open-drain>, 2: P5D7o<push-pull>, 3: PWM5, 4: TCON[0])
 
-#define _PIN_102								(0 & 0x07)	// 0 ~ 6 (0: P7D6i, 1: P7D6o<open-drain>, 2: P7D6o<push-pull>, 3: PWM0, 4: SD3, 5: SPDIF3, 6: TCON[10])
+#define _PIN_102								(2 & 0x07)	// 0 ~ 6 (0: P7D6i, 1: P7D6o<open-drain>, 2: P7D6o<push-pull>, 3: PWM0, 4: SD3, 5: SPDIF3, 6: TCON[10])
 #define _PIN_103								(0 & 0x07)	// 0 ~ 7 (0: P7D5i, 1: P7D5o<open-drain>, 2: P7D5o<push-pull>, 3: PWM1, 4: SD2, 5: SPDIF2, 6: TCON[8], 7: IICSCL)
 #define _PIN_104								(0 & 0x07)	// 0 ~ 7 (0: P7D4i, 1: P7D4o<open-drain>, 2: P7D4o<push-pull>, 3: SD1, 4: IRQ, 5: TCON[5], 6: SPDIF1, 7: IICSDA)
 #define _PIN_105								(0 & 0x07)	// 0 ~ 5 (0: P8D0i, 1: P8D0o<open-drain>, 2: P8D0o<push-pull>, 3: TCON[9], 4: SD0, 5: SPDIF0)
@@ -250,11 +250,18 @@ sbit    bLIGHTPOWER                             = P3^4;
 //--------------------------------------------------
 // Connect definitions
 //--------------------------------------------------
-sbit    bVGACONNECT                             = P1^3;
-#define bHDMICONNECT							(_MCU_PORT61)
-#define bHot_Plug								(_MCU_PORT57)
-//sbit    bHot_Plug                               = P3^7;
+#define    bVGACONNECT                          0
+#define bHDMICONNECT							0
+//#define bHot_Plug								0
+#define    bHot_Plug                            0
 #define bDVICONNECT                             0
+
+// sbit    bVGACONNECT                             = P1^3;
+// #define bHDMICONNECT							(_MCU_PORT61)
+// //#define bHot_Plug								(_MCU_PORT57)
+// sbit    bHot_Plug                               = P3^7;
+// #define bDVICONNECT                             0
+
 
 #define bUD							(_MCU_PORT74)
 #define bLR							(_MCU_PORT75)
@@ -302,6 +309,7 @@ sbit    bKey_P34								= P3^4;         //Source
 //sbit bLED1									    = P3^3;
 sbit bLED2							   = P1^1;
 #define bLED1                          (_MCU_PORT62)
+#define bLED3                          (_MCU_PORT76)
 
 //--------------------------------------------------
 // Tuner power
@@ -325,7 +333,7 @@ sbit bLED2							   = P1^1;
 //--------------------------------------------------
 //            Audio definitions
 //--------------------------------------------------
-#define AUDIO_TYPE                              _AUDIO_PWM      // _AUDIO_SC7313,_AUDIO_PWM 
+#define AUDIO_TYPE                              _AUDIO_PWM      // _AUDIO_SC7313 _AUDIO_PWM  _AUDIO_NJW1144  
 
 #define bAUDIO_MUTE_A							(_MCU_PORT64)
 #define SET_bAUDIO_MUTE_A(x)					(bAUDIO_MUTE_A = x)
@@ -360,7 +368,7 @@ _RTD_PWM0, _RTD_PWM1, _RTD_PWM2, _RTD_PWM3, _RTD_PWM4, _RTD_PWM5
 /*
 _RTD_PWM0, _RTD_PWM1, _RTD_PWM2, _RTD_PWM3, _RTD_PWM4, _RTD_PWM5 
 */
-#define _BACKLIGHT_PWM                         _RTD_PWM1
+#define _BACKLIGHT_PWM                         0//_RTD_PWM1
 #define _BACKLIGHT_PWM_INVERSE                 _DISABLE    // _ENABLE,  _DISABLE
 
 #define _BACKLIGHT_PWM_FREQ						500		// hz
@@ -432,7 +440,7 @@ _RTD_PWM0, _RTD_PWM1, _RTD_PWM2, _RTD_PWM3, _RTD_PWM4, _RTD_PWM5
 //--------------------------------------------------
 // HDCP Supported
 //--------------------------------------------------
-#define _HDCP_SUPPORT                   		_ON
+#define _HDCP_SUPPORT                   		_OFF
 
 //--------------------------------------------------
 // HDMI HOT PLUG OPTION

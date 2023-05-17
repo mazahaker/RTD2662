@@ -27,6 +27,8 @@ BYTE code tExitDebugMode[] = {0x04,0x03,0x02,0x01};
 //----------------------------------------------------------------------------
 void CUartInit(void)
 {
+	
+
 	WORD usTemp = 0xFFFF - (UINT32)27000 * 1000 / 19200 / 32;
 	// Initialize SBuf to zero
 	SBUF = 0x00;
@@ -60,7 +62,7 @@ void CSwitchToUart(void)
 
 	fInUartMode = 1;
 
-    DebugPrintf("Swtich to Uart mode.\n",0x00);
+    // DebugPrintf("Swtich to Uart mode.\n",0x00);
 
     for(i=0;i<10;i++)
     {
@@ -76,7 +78,7 @@ void CSwitchToI2C(void)
 	BYTE i;
 	bit fTest = 0;
 	
-    DebugPrintf("Swtich to IIC mode.\n",0x00);
+    // DebugPrintf("Swtich to IIC mode.\n",0x00);
 	MCU_PIN_SHARE_CTRL00_FF96 &= 0x07;
 	ES = 0; // Enable UART's interrupt
 	PS = 0; // Change UART's interrupt to high priority	
@@ -250,14 +252,14 @@ void CUartHandler(void)
 		switch (pUartData[0])
 		{	
 			case UartCMD_DebugModeExit:
-				UartCMDDebugModeExit();
+				// UartCMDDebugModeExit();
 				break;
 			case UartCMD_DebugModeEnter:
-				UartCMDDebugModeEnter();
+				// UartCMDDebugModeEnter();
 				break;
 			
 			case UartCMD_CScalerRead:
-				UartCMDScalerRead();
+				// UartCMDScalerRead();
 				break;
 
 			case UartCMD_I2CRead:

@@ -32,6 +32,11 @@ extern BIT fUartDebugLoop;
 extern BYTE xdata ucUartRxIndex;
 extern BYTE xdata ucUartRxCount;
 extern BYTE xdata pUartData[9];
+// extern BYTE xdata SBUF;
+// extern BYTE xdata SCON;
+// extern BYTE xdata ES;
+// extern BYTE xdata PS;
+// extern BYTE xdata T2CON;
 
 
 void CUartInit(void);

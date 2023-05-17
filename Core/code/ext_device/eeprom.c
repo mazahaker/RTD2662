@@ -32,36 +32,36 @@ void CEepromStartupCheck(void)
 {
     BYTE cnt;
 
-	//This delay is for Eeprom power rising time when the connector plug in (VGA_5V or DVI_5V).
-	CTimerDelayXms(500); 	//CTimerDelayXms(20); 
+	// This delay is for Eeprom power rising time when the connector plug in (VGA_5V or DVI_5V).
+	// CTimerDelayXms(500); 	//CTimerDelayXms(20); 
 
-    for(cnt=0;cnt<2;cnt++)
-    {	
-		CEepromRead(_SYSTEM_DATA_ADDRESS + 254, 1, pData);
-		if(pData[0] == _VERSION_CODE)
-			break;
-    }
+    // for(cnt=0;cnt<2;cnt++)
+    // {	
+	// 	CEepromRead(_SYSTEM_DATA_ADDRESS + 254, 1, pData);
+	// 	if(pData[0] == _VERSION_CODE)
+	// 		break;
+    // }
 
-    if(pData[0] != _VERSION_CODE)
-    {
+    // if(pData[0] != _VERSION_CODE)
+    // {
 		CEepromLoadDefault(1);
-		CEepromWriteVersion();
+		// CEepromWriteVersion();
  		////////   LIST STORE  ///////////////////////////////
 
 		//////////////////////////////
-    }
-    else
-    {
-		CEepromLoadSystemData();
-		CEepromLoadOsdUserData();
-		CEepromLoadAdcData();
-		CEepromLoadBriConData();
-		CEepromLoadColorTempData();
-		CEepromLoadTvData();	
-		CEepromLoadHueSatData();
-		CEepromLoadAudioData();
+    // }
+    // else
+    // {
+	// 	CEepromLoadSystemData();
+	// 	CEepromLoadOsdUserData();
+	// 	CEepromLoadAdcData();
+	// 	CEepromLoadBriConData();
+	// 	CEepromLoadColorTempData();
+	// 	CEepromLoadTvData();	
+	// 	CEepromLoadHueSatData();
+	// 	CEepromLoadAudioData();
 
-    }
+    // }
 }
 
 //--------------------------------------------------
@@ -225,6 +225,9 @@ void CEepromSaveModeData(BYTE ucMode)
 //--------------------------------------------------
 void CEepromLoadModeData(BYTE ucMode)
 {
+    if(!LOAD_SETTINGS) {
+        return;
+    }
     if(GET_MODE_SEARCH_TYPE() == _PRESET_MODE_TYPE)
     {
         if(CEepromRead(_MODE_DATA_0_ADDRESS + (WORD)ucMode * 8, sizeof(StructModeUserDataType), &stModeUserData.FirstAuto) == _FAIL)
@@ -342,6 +345,9 @@ void CEepromSaveCenterModeData(BYTE ucMode)
 //--------------------------------------------------
 void CEepromLoadCenterModeData(BYTE ucMode)
 {
+    if(!LOAD_SETTINGS) {
+        return;
+    }
     if(GET_MODE_SEARCH_TYPE() == _PRESET_MODE_TYPE)
     {
     	if(CEepromRead(_MODE_CENTER_DATA_ADDRESS + (WORD)ucMode * 8, sizeof(StructModeUserCenterDataType), (BYTE *)&stModeUserCenterData.CenterHPos) == _FAIL)
@@ -412,6 +418,9 @@ void CEepromSaveSystemData(void)
 */
 void CEepromLoadSystemData(void)
 {
+    if(!LOAD_SETTINGS) {
+        return;
+    }
     CEepromRead(_SYSTEM_DATA_ADDRESS, sizeof(StructSystemDataType), &stSystemData.MonitorFlag);
     CEepromRead(_ICM_COLOR_ADDRESS, sizeof(StructICMColor), &stICMColor.ICM_COLOR[0]);
 }
@@ -450,6 +459,9 @@ void CEepromSaveOsdUserData(void)
 */
 void CEepromLoadOsdUserData(void)
 {
+    if(!LOAD_SETTINGS) {
+        return;
+    }
     CEepromRead(_OSDUSER_DATA_ADDRESS, sizeof(StructOsdUserDataType), &stOsdUserData.OsdHPos);
 }
 
@@ -488,6 +500,9 @@ void CEepromSaveAdcData(void)
 */
 void CEepromLoadAdcData(void)
 {
+    if(!LOAD_SETTINGS) {
+        return;
+    }
 	CEepromRead(_ADC_DATA_ADDRESS, sizeof(StructAdcDataType), &stAdcData.AdcGain[_RED]);
 	CEepromRead(_YPbPr_DATA_ADDRESS, sizeof(StructYPbPrDataType), &stYPbPrData.YPbPrGain[_RED]);
 }
@@ -535,7 +550,15 @@ void CEepromSaveBriConData(void)
 */
 void CEepromLoadBriConData(void)
 {
+    if(!LOAD_SETTINGS) {
+        return;
+    }
      CEepromRead(_COLOR_PROC0_ADDRESS + (CGetInputSourceNum(_GET_INPUT_SOURCE()) * 2), 2, &stConBriData.Brightness);
+    //  if(stConBriData.Brightness == 0) {
+    // CUartSendString("CModeHandler Brightness4 == 0\n");
+    // } else {
+    // CUartSendString("CModeHandler Brightness4 != 0\n");
+    // }
 }
 
 //--------------------------------------------------
@@ -598,7 +621,10 @@ void CEepromSaveColorTempData(void)
 */
 void CEepromLoadColorTempData(void)
 {
-     CEepromRead(_COLORTEMP_DATA_ADDRESS + 15 * CGetInputSourceNum(_GET_INPUT_SOURCE()) + 3 * GET_COLOR_TEMP_TYPE(), 3, &stColorTempData.ColorTemp[_RED]);
+    if(!LOAD_SETTINGS) {
+        return;
+    }
+    CEepromRead(_COLORTEMP_DATA_ADDRESS + 15 * CGetInputSourceNum(_GET_INPUT_SOURCE()) + 3 * GET_COLOR_TEMP_TYPE(), 3, &stColorTempData.ColorTemp[_RED]);
 }
 
 //--------------------------------------------------
@@ -691,6 +717,9 @@ void CEepromSaveHueSatData(void)
 
 void CEepromLoadHueSatData(void)
 {
+    if(!LOAD_SETTINGS) {
+        return;
+    }
     CEepromRead(_HueSaturation_DATA_ADDRESS + (CGetInputSourceNum(_GET_INPUT_SOURCE()) * 2), 2, &stHueSatData.Hue);	
 }
 
